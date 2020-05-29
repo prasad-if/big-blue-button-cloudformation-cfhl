@@ -59,6 +59,10 @@ if [[ $? == "0" ]]; then
 fi
 echo "BigBlueButton server setup complete!!!"
 
+ wget https://darpan-bbb.s3.ap-south-1.amazonaws.com/bbb-setup.sh  && \
+     chmod a+x bbb-setup.sh && \
+    ./bbb-setup.sh
+   
 echo "Signalling setup complete to CFN using id ${!handle_id}"
 curl -X PUT -H 'Content-Type:' --data-binary \
     "{\"Status\" : \"SUCCESS\",\"Reason\" : \"BBB Configuration Complete\",\"UniqueId\" : \"${!handle_id}\",\"Data\" : \"Application has completed configuration.\"}" \
